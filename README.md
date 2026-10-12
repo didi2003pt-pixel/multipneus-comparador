@@ -14,7 +14,7 @@ Fornecedores mapeados nesta fase:
 
 ## Estado atual
 
-A estrutura base do projeto está criada. Os três portais já foram analisados e os respetivos formatos de resposta foram mapeados, mas **a autenticação automática ainda não está implementada**.
+A estrutura base do projeto está criada. Os três portais já foram analisados. O parser e o construtor de pesquisa da **RS Contreras** já estão implementados e testáveis com dados sanitizados. **A autenticação automática ainda não está implementada**.
 
 O projeto não deve guardar passwords, cookies, tokens de sessão ou respostas B2B brutas no Git.
 
@@ -25,6 +25,7 @@ Requer Node.js 20+.
 ```bash
 npm install
 npm run typecheck
+npm test
 npm run demo
 ```
 
@@ -49,9 +50,9 @@ Se os portes ou outros encargos ainda não forem conhecidos, o resultado fica ma
 
 ## Próximo passo
 
-Implementar, um fornecedor de cada vez, o conector de pesquisa autenticada:
+Implementar a autenticação/sessão da RS Contreras sem guardar segredos no Git e, depois, ligar os restantes fornecedores:
 
-1. RS Contreras
+1. Sessão autenticada RS Contreras
 2. AB Tyres
 3. S. José Pneus
 
