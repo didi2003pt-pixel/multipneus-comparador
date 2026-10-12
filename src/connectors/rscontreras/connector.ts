@@ -1,3 +1,7 @@
+import type {
+  SupplierConnector,
+  SupplierSearchQuery,
+} from "../supplier-connector.js";
 import type { TyreOffer } from "../../domain/tyre-offer.js";
 import {
   buildRSContrerasSearchUrl,
@@ -13,12 +17,19 @@ export interface RSContrerasHtmlClient {
   get(url: string): Promise<string>;
 }
 
-export class RSContrerasConnector {
+export class RSContrerasConnector implements SupplierConnector {
+  readonly id = "rscontreras" as const;
+
   constructor(private readonly client: RSContrerasHtmlClient) {}
 
-  async searchTyres(dimension: string): Promise<TyreOffer[]> {
-    const url = buildRSContrerasSearchUrl(dimension);
+  async searchTyres(query: SupplierSearchQuery): Promise<TyreOffer[]> {
+    const url = buildRSContrerasSearchUrl(query.size);
     const html = await this.client.get(url);
-    return parseRSContrerasPage(html);
+    const offers = parseRSContrerasPage(html);
+
+    if (!query.brand) return offers;
+
+    const brand = query.brand.trim().toLowerCase();
+    return offers.filter((offer) => offer.brand.toLowerCase() === brand);
   }
 }
