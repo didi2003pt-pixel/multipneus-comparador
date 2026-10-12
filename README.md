@@ -14,7 +14,7 @@ Fornecedores mapeados nesta fase:
 
 ## Estado atual
 
-A estrutura base do projeto está criada. Os três portais já foram analisados. Os parsers de **RS Contreras, AB Tyres e S. José Pneus** já estão implementados com testes sanitizados. O núcleo já consegue consultar vários conectores em paralelo, com timeout e isolamento de falhas. **A autenticação automática ainda não está implementada**.
+A estrutura base do projeto está criada. Os três portais já foram analisados. Os parsers de **RS Contreras, AB Tyres e S. José Pneus** já estão implementados com testes sanitizados. O núcleo já consegue consultar vários conectores em paralelo, com timeout e isolamento de falhas. Existe também uma **interface web em modo demo** para validar o fluxo ao balcão. **A autenticação automática ainda não está implementada**.
 
 O projeto não deve guardar passwords, cookies, tokens de sessão ou respostas B2B brutas no Git.
 
@@ -27,9 +27,10 @@ npm install
 npm run typecheck
 npm test
 npm run demo
+npm run web
 ```
 
-A demonstração usa ofertas de exemplo para validar a normalização e ordenação. Ainda não faz pedidos aos fornecedores.
+A demonstração usa apenas ofertas já validadas e dados sanitizados para testar a normalização e ordenação. `npm run web` abre a interface em `http://localhost:3000`. A página mostra claramente **MODO DEMO** e ainda não faz login nem pedidos autenticados aos fornecedores.
 
 ## Regra de comparação
 
@@ -57,3 +58,19 @@ Implementar a autenticação/sessão da RS Contreras sem guardar segredos no Git
 3. S. José Pneus
 
 Cada conector deverá devolver o mesmo formato `TyreOffer`.
+
+
+## Interface web
+
+A primeira interface é deliberadamente simples: medida, marca e quantidade, estado dos três fornecedores e tabela ordenada pelo custo conhecido.
+
+Para executar:
+
+```bash
+npm install
+npm run web
+```
+
+Depois abrir `http://localhost:3000`.
+
+O endpoint `/health` pode ser usado por uma plataforma de alojamento para verificar se o serviço está online.
