@@ -74,3 +74,15 @@ npm run web
 Depois abrir `http://localhost:3000`.
 
 O endpoint `/health` pode ser usado por uma plataforma de alojamento para verificar se o serviço está online.
+
+
+## GitHub Pages (demo estática)
+
+A pasta `docs/` contém uma demonstração estática preparada para GitHub Pages.
+
+No GitHub Free, Pages só está disponível para repositórios públicos. Para publicar:
+1. tornar o repositório público, ou mover apenas a demo para um repositório público separado;
+2. em **Settings → Pages**, escolher **Deploy from a branch**;
+3. selecionar `main` e a pasta `/docs`.
+
+A demo do Pages não contém credenciais e não consulta os fornecedores em tempo real.
