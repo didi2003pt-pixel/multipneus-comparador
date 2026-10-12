@@ -14,7 +14,7 @@ Fornecedores mapeados nesta fase:
 
 ## Estado atual
 
-A estrutura base do projeto está criada. Os três portais já foram analisados. O parser e o construtor de pesquisa da **RS Contreras** já estão implementados. O núcleo já consegue consultar vários conectores em paralelo, com timeout e isolamento de falhas. **A autenticação automática ainda não está implementada**.
+A estrutura base do projeto está criada. Os três portais já foram analisados. Os parsers de **RS Contreras, AB Tyres e S. José Pneus** já estão implementados com testes sanitizados. O núcleo já consegue consultar vários conectores em paralelo, com timeout e isolamento de falhas. **A autenticação automática ainda não está implementada**.
 
 O projeto não deve guardar passwords, cookies, tokens de sessão ou respostas B2B brutas no Git.
 

@@ -6,7 +6,7 @@
   "scripts": {
     "demo": "tsx src/demo.ts",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test src/connectors/rscontreras/parser.test.ts src/core/search-suppliers.test.ts"
+    "test": "tsx --test src/connectors/rscontreras/parser.test.ts src/connectors/abtyres/parser.test.ts src/connectors/sjose/parser.test.ts src/core/search-suppliers.test.ts"
   },
   "devDependencies": {
     "@types/node": "^24.7.2",
