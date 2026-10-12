@@ -104,8 +104,7 @@ function extractProducts(html: string): RSContrerasProduct[] {
     const separator = chunk.indexOf(":");
     if (separator === -1) continue;
 
-    const payload = chunk.slice(separator + 1).trim();
-    if (!payload.startsWith("[")) continue;
+    const payload = chunk\n      .slice(separator + 1)\n      .trim()\n      .replace(/\\\\n$/, "")\n      .trim();\n    if (!payload.startsWith("[")) continue;
 
     try {
       const parsed = JSON.parse(payload) as unknown;
