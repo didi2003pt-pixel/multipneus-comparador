@@ -53,7 +53,10 @@ export function normalizeRSContrerasDimension(input: string): string {
 }
 
 export function formatTyreMeasure(input: string): string {
-  const match = input.toUpperCase().replace(/\s+/g, "").match(/^(\d{3})\/(\d{2})R(\d{2})$/);
+  const match = input
+    .toUpperCase()
+    .replace(/\s+/g, "")
+    .match(/^(\d{3})\/(\d{2})R(\d{2})$/);
 
   if (!match) return input.trim();
 
@@ -83,6 +86,7 @@ function isProduct(value: unknown): value is RSContrerasProduct {
 
 function decodeNextChunks(html: string): string[] {
   const chunks: string[] = [];
+  NEXT_DATA_RE.lastIndex = 0;
   let match: RegExpExecArray | null;
 
   while ((match = NEXT_DATA_RE.exec(html)) !== null) {
@@ -104,7 +108,13 @@ function extractProducts(html: string): RSContrerasProduct[] {
     const separator = chunk.indexOf(":");
     if (separator === -1) continue;
 
-    const payload = chunk\n      .slice(separator + 1)\n      .trim()\n      .replace(/\\\\n$/, "")\n      .trim();\n    if (!payload.startsWith("[")) continue;
+    const payload = chunk
+      .slice(separator + 1)
+      .trim()
+      .replace(/\\n$/, "")
+      .trim();
+
+    if (!payload.startsWith("[")) continue;
 
     try {
       const parsed = JSON.parse(payload) as unknown;
